@@ -1,0 +1,42 @@
+ *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+ 
+}
+.header{
+    background-color:#000;
+     /* background: url(/docs/img/Layer\ 13.png)no-repeat center / cover;  */
+}
+.container{
+    max-width: 1120px;
+    padding-top: 100px;
+
+}
+.video{
+
+    margin-top: 10px;
+    margin-left: 60px;
+   
+   
+}
+.dib{
+    text-transform: uppercase;
+    font-weight: 1000;
+    font-size: 100px;
+    color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 50px;
+
+}
+h2{
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 32px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} 

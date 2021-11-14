@@ -1,0 +1,492 @@
+<!DOCTYP<!DOCTYPE html>
+<html>
+    <head>
+        <title>LED Dgital Clock || Made by PIYAL</title>
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    </head>
+    <body><style>
+body {
+    margin: 0;
+    background: #17171c;
+    font-family: 'Orbitron', sans-serif;
+}
+.clockBody{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 400px;
+    height: 150px;
+    background: #000;
+    border-radius: 30%/100%;
+    box-shadow: 0 -2px 2px 2px rgba(255,255,255,0.1);
+    opacity: 0.8;
+}
+.clockBodyLed{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    border: 2.5px solid red;
+    border-radius: 27.5%/100%;
+    box-shadow: 0 0 5px 5px rgba(255,0,0,0.4),
+                inset 0 0 3px 3px rgba(255,0,0,0.4);
+}
+.reflec{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-30deg, transparent, #fff 50%, #000 50%, transparent);
+    border-radius: 30%/100%;
+    opacity: 0.1;
+    z-index: 2;
+}
+
+.nums{
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    width: 85%;
+    height: 65%;
+}
+.hour{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 28%;
+    height: calc(100% - 20px);
+}
+.colon{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 100px;
+    text-align: center;
+    color: red;
+}
+.c1{
+    left: 31%;
+}
+.min{
+    position: absolute;
+    top: 10px;
+    left: 36%;
+    width: 28%;
+    height: calc(100% - 20px);
+}
+.c2{
+    left: 64%;
+}
+.sec{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 28%;
+    height: calc(100% - 20px);
+}
+.apMeri{
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    width: 11%;
+    height: 30px;
+    color: red;
+    font-size: 25px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.num{
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+}
+.one{
+    left: 0%;
+}
+.two{
+    left: 50%;
+}
+.bar{
+    position: absolute;
+    width: 7px;
+    height: 40%;
+    background: red;
+    box-shadow: 0 0 5px 5px rgba(255,0,0,0.2);
+    border-radius: 5px;
+    opacity: 0.3;
+}
+.tc{
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%,-50%) rotate(90deg);
+}
+.tl{
+    top: 4px;
+    left: 2px;
+}
+.tr{
+    top: 5px;
+    right: 2px;
+}
+.cc{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) rotate(90deg);
+}
+.bl{
+    bottom: 4px;
+    left: 2px;
+}
+.br{
+    bottom: 4px;
+    right: 2px;
+}
+.bc{
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%,-50%) rotate(90deg);
+}
+.slider{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-appearance: none;
+    appearance: none;
+    width: 90%;
+    height: 10px;
+    background: linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);
+    outline: none;
+    border-radius: 10px;
+}
+.slider::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: conic-gradient(#ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+
+
+
+
+</style>
+<script>
+
+
+
+window.onload = function(){
+    
+    num = document.querySelectorAll(".num");
+    bar = document.querySelectorAll(".bar");
+    tc = document.querySelectorAll(".tc");
+    tl = document.querySelectorAll(".tl");
+    tr = document.querySelectorAll(".tr");
+    cc = document.querySelectorAll(".cc");
+    bl = document.querySelectorAll(".bl");
+    br = document.querySelectorAll(".br");
+    bc = document.querySelectorAll(".bc");
+    slider = document.querySelector(".slider");
+    style = document.querySelector(".style");
+    apMeri = document.querySelector(".apMeri");
+    colon = document.querySelectorAll(".colon");
+    clockBodyLed = document.querySelector(".clockBodyLed");
+    
+    setInterval(setTime, 1000);
+}
+
+
+function setTime(){
+    var time = new Date();
+    var seconds = time.getSeconds();
+    var minutes = time.getMinutes();
+    var hours = time.getHours();
+    
+    var session = hours >= 12 && hours <= 6 ? "am" : "pm";
+    
+    if(hours == 0){hours = 12;}
+
+    if(hours > 12){hours = hours - 12;}
+
+    hours = (hours < 10) ? "0" + hours : hours;
+    minutes = (minutes < 10) ? "0" + minutes : minutes;
+    seconds = (seconds < 10) ? "0" + seconds : seconds;
+    
+    var tim = hours + "" + minutes + "" + seconds;
+    
+    
+    
+    
+    
+    switch(tim.charAt(0)){
+        case "0": zero(0);break;
+        case "1":  one(0);break;
+        case "2":  two(0);break;
+        case "3":three(0);break;
+        case "4": four(0);break;
+        case "5": five(0);break;
+        case "6":  six(0);break;
+        case "7":seven(0);break;
+        case "8":eight(0);break;
+        case "9": nine(0);break;
+    }
+    switch(tim.charAt(1)){
+        case "0": zero(1);break;
+        case "1":  one(1);break;
+        case "2":  two(1);break;
+        case "3":three(1);break;
+        case "4": four(1);break;
+        case "5": five(1);break;
+        case "6":  six(1);break;
+        case "7":seven(1);break;
+        case "8":eight(1);break;
+        case "9": nine(1);break;
+    }switch(tim.charAt(2)){
+        case "0": zero(2);break;
+        case "1":  one(2);break;
+        case "2":  two(2);break;
+        case "3":three(2);break;
+        case "4": four(2);break;
+        case "5": five(2);break;
+        case "6":  six(2);break;
+        case "7":seven(2);break;
+        case "8":eight(2);break;
+        case "9": nine(2);break;
+    }
+    switch(tim.charAt(3)){
+        case "0": zero(3);break;
+        case "1":  one(3);break;
+        case "2":  two(3);break;
+        case "3":three(3);break;
+        case "4": four(3);break;
+        case "5": five(3);break;
+        case "6":  six(3);break;
+        case "7":seven(3);break;
+        case "8":eight(3);break;
+        case "9": nine(3);break;
+    }
+    switch(tim.charAt(4)){
+        case "0": zero(4);break;
+        case "1":  one(4);break;
+        case "2":  two(4);break;
+        case "3":three(4);break;
+        case "4": four(4);break;
+        case "5": five(4);break;
+        case "6":  six(4);break;
+        case "7":seven(4);break;
+        case "8":eight(4);break;
+        case "9": nine(4);break;
+    }
+    switch(tim.charAt(5)){
+        case "0": zero(5);break;
+        case "1":  one(5);break;
+        case "2":  two(5);break;
+        case "3":three(5);break;
+        case "4": four(5);break;
+        case "5": five(5);break;
+        case "6":  six(5);break;
+        case "7":seven(5);break;
+        case "8":eight(5);break;
+        case "9": nine(5);break;
+    }
+    apMeri.innerText = session;
+    }
+    
+
+function zero(elem){
+        tc[elem].style.opacity = "1";
+        tl[elem].style.opacity = "1";
+        tr[elem].style.opacity = "1";
+        cc[elem].style.opacity = "0.2";
+        bl[elem].style.opacity = "1";
+        br[elem].style.opacity = "1";
+        bc[elem].style.opacity = "1";
+}
+function one(elem){
+        tc[elem].style.opacity = "0.2";
+        tl[elem].style.opacity = "0.2";
+        tr[elem].style.opacity = "1";
+        cc[elem].style.opacity = "0.2";
+        bl[elem].style.opacity = "0.2";
+        br[elem].style.opacity = "1";
+        bc[elem].style.opacity = "0.2";
+}
+function two(elem){
+        tc[elem].style.opacity = "1";
+        tl[elem].style.opacity = "0.2";
+        tr[elem].style.opacity = "1";
+        cc[elem].style.opacity = "1";
+        bl[elem].style.opacity = "1";
+        br[elem].style.opacity = "0.2";
+        bc[elem].style.opacity = "1";
+}
+function three(elem){
+        tc[elem].style.opacity = "1";
+        tl[elem].style.opacity = "0.2";
+        tr[elem].style.opacity = "1";
+        cc[elem].style.opacity = "1";
+        bl[elem].style.opacity = "0.2";
+        br[elem].style.opacity = "1";
+        bc[elem].style.opacity = "1";
+}
+function four(elem){
+        tc[elem].style.opacity = "0.2";
+        tl[elem].style.opacity = "1";
+        tr[elem].style.opacity = "1";
+        cc[elem].style.opacity = "1";
+        bl[elem].style.opacity = "0.2";
+        br[elem].style.opacity = "1";
+        bc[elem].style.opacity = "0.2";
+}
+function five(elem){
+        tc[elem].style.opacity = "1";
+        tl[elem].style.opacity = "1";
+        tr[elem].style.opacity = "0.2";
+        cc[elem].style.opacity = "1";
+        bl[elem].style.opacity = "0.2";
+        br[elem].style.opacity = "1";
+        bc[elem].style.opacity = "1";
+}
+function six(elem){
+        tc[elem].style.opacity = "1";
+        tl[elem].style.opacity = "1";
+        tr[elem].style.opacity = "0.2";
+        cc[elem].style.opacity = "1";
+        bl[elem].style.opacity = "1";
+        br[elem].style.opacity = "1";
+        bc[elem].style.opacity = "1";
+}
+function seven(elem){
+        tc[elem].style.opacity = "1";
+        tl[elem].style.opacity = "0.2";
+        tr[elem].style.opacity = "1";
+        cc[elem].style.opacity = "0.2";
+        bl[elem].style.opacity = "0.2";
+        br[elem].style.opacity = "1";
+        bc[elem].style.opacity = "0.2";
+}
+function eight(elem){
+        tc[elem].style.opacity = "1";
+        tl[elem].style.opacity = "1";
+        tr[elem].style.opacity = "1";
+        cc[elem].style.opacity = "1";
+        bl[elem].style.opacity = "1";
+        br[elem].style.opacity = "1";
+        bc[elem].style.opacity = "1";
+}
+function nine(elem){
+        tc[elem].style.opacity = "1";
+        tl[elem].style.opacity = "1";
+        tr[elem].style.opacity = "1";
+        cc[elem].style.opacity = "1";
+        bl[elem].style.opacity = "0.2";
+        br[elem].style.opacity = "1";
+        bc[elem].style.opacity = "1";
+}
+
+function sl(){
+    var val = slider.value;
+    
+    clockBodyLed.style.border = `2.5px solid hsl(${val}, 100%, 50%)`;
+    clockBodyLed.style.boxShadow = `0 0 5px 5px hsla(${val}, 100%, 50%,0.4), inset 0 0 3px 3px hsla(${val}, 100%, 50%,0.4)`;
+    
+    colon[0].style.color = `hsl(${val}, 100%, 50%)`;
+    colon[1].style.color = `hsl(${val}, 100%, 50%)`;
+    
+    apMeri.style.color = `hsl(${val}, 100%, 50%)`;
+    
+    for(var i = 0; i < bar.length; i++){
+        
+        bar[i].style.background = `hsl(${val}, 100%, 50%)`;
+        bar[i].style.boxShadow = `0 0 5px 5px hsla(${val}, 100%, 50%,0.2)`;
+        
+    }
+}
+
+
+
+
+
+</script>
+        <div class="clockBody">
+            <div class="clockBodyLed"></div>
+            <div class="reflec"></div>
+            <div class="nums">
+                <div class="hour">
+                    <div class="num one">
+                        <div class="bar tc"></div>
+                        <div class="bar tl"></div>
+                        <div class="bar tr"></div>
+                        <div class="bar cc"></div>
+                        <div class="bar bl"></div>
+                        <div class="bar br"></div>
+                        <div class="bar bc"></div>
+                    </div>
+                    <div class="num two">
+                        <div class="bar tc"></div>
+                        <div class="bar tl"></div>
+                        <div class="bar tr"></div>
+                        <div class="bar cc"></div>
+                        <div class="bar bl"></div>
+                        <div class="bar br"></div>
+                        <div class="bar bc"></div>
+                    </div>
+                </div>
+                <div class="colon c1">:</div>
+                <div class="min">
+                    <div class="num one">
+                        <div class="bar tc"></div>
+                        <div class="bar tl"></div>
+                        <div class="bar tr"></div>
+                        <div class="bar cc"></div>
+                        <div class="bar bl"></div>
+                        <div class="bar br"></div>
+                        <div class="bar bc"></div>
+                    </div>
+                    <div class="num two">
+                        <div class="bar tc"></div>
+                        <div class="bar tl"></div>
+                        <div class="bar tr"></div>
+                        <div class="bar cc"></div>
+                        <div class="bar bl"></div>
+                        <div class="bar br"></div>
+                        <div class="bar bc"></div>
+                    </div>
+                </div>
+                <div class="colon c2">:</div>
+                <div class="sec">
+                    <div class="num one">
+                        <div class="bar tc"></div>
+                        <div class="bar tl"></div>
+                        <div class="bar tr"></div>
+                        <div class="bar cc"></div>
+                        <div class="bar bl"></div>
+                        <div class="bar br"></div>
+                        <div class="bar bc"></div>
+                    </div>
+                    <div class="num two">
+                        <div class="bar tc"></div>
+                        <div class="bar tl"></div>
+                        <div class="bar tr"></div>
+                        <div class="bar cc"></div>
+                        <div class="bar bl"></div>
+                        <div class="bar br"></div>
+                        <div class="bar bc"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="apMeri">AM</div>
+        </div>
+        <input class="slider" type="range" max="360" min="0" value="0" step="1" oninput="sl();">
+    </body>
+</html>

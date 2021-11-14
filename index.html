@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY FIRST WEB PROGRAMM</title>
+    <link rel="stylesheet" href="/style.css">
+     <link rel="stylesheet" href="/fontawesome.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="crossorigin="anonymous">
+</head>
+<body>
+    <div class="hero">
+        <div class="nav-bar">
+            
+            <div class="nav-logo">
+                <h1> <img src="/logo.png" alt=""  onclick="closemenu()"> Global</h1>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <i class="fa fa-close" ></i>
+                <ul >
+                    <li><a href="/index.html" target="_blank1" ><i class="fas fa-home "></i> home</a></li>
+                    <li><a href="/about.html" target="_blank1"><i class="fas fa-address-card "></i> about</a></li>
+                    <li><a href="/price.html" target="_blank1" ><i class="fas fa-tags"></i> price</a></li>
+                    <li><a href="/contact.html" target="_blank1"><i class="fas fa-address-book"></i> contact</a></li>
+                    <button type="button" class="btn"><i class="fas fa-sign-in-alt"></i> <a href="/sign-in.html" target="_blank1"> login</a></button>
+                  </ul>   
+            </div>
+            <i class="fa fa-bars" onclick="showmenu()" ></i>
+        </div>
+        <div class="banner-title">
+            <h1>MY NAME IS <br> <span> ABDUGAPIROV MURODJON</span>  </h1>
+            <h2>I'AM - WEB DEWOLOPER</h2>
+        </div>
+        <div class="vertical-bar">
+            <div class="search-icon">
+                <i class="fa fa-th-list"></i>
+                <i class="fa fa-search"></i>
+            </div>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/" target="_blank1">  <i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/" target="_blank1">  <i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/" target="_blank1"> <i class="fab fa-twitter"></i></a>
+                <a href="https://www.pinterest.com/" target="_blank1"> <i class="fab fa-pinterest"></i></a>
+            </div>
+        </div>
+    </div>
+    <script>
+        var show = document.getElementById("nav-links");
+        console.log(show);
+        function showmenu(){
+                  show.style.right = "0";
+        }         
+        function closemenu(){
+                  show.style.right = "-200px";
+        }         
+    </script>
+    <script src="/app.js"></script>
+</body>
+</html>

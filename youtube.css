@@ -1,0 +1,34 @@
+
+.m{
+      padding-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 800px;
+    padding-left: 395px;    
+    padding-right: 20px;
+
+}
+.n{
+
+    padding-top: 100px;
+    padding-left: 60px;
+    padding-right: 20px;
+   
+}
+@media(min-width:700px){
+   .m{
+       padding-left: none;
+       padding-right: none;
+       width: 600px;
+
+   }
+   .n{
+       
+       padding-right: none;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+   }
+}
